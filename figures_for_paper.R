@@ -20,6 +20,7 @@ depth.sim.df$panel.name <- factor(depth.sim.df$panel.name,
                                            'alpha = 0.5, beta = 1'=parse(text=TeX('$\\alpha = 0.5, \\beta = 1$')),
                                            'alpha = 0.95, beta = 1'=parse(text=TeX('$\\alpha = 0.95, \\beta = 1$')),
                                            'alpha = 0.95, beta = 2'=parse(text=TeX('$\\alpha = 0.95, \\beta = 2$'))))
+# FIGURE 1 #
 pdf(file = 'draft/figures/fig_depth_chipman.pdf', width = 6, height = 3)
 ggplot(depth.sim.df, aes(x = depth)) + 
   geom_vline(xintercept = c(0, 4, 8, 12), color = 'grey', alpha = 0.5) +
@@ -49,6 +50,7 @@ nterm.sim.df$panel.name <- factor(nterm.sim.df$panel.name,
                                            'alpha = 0.5, beta = 1'=parse(text=TeX('$\\alpha = 0.5, \\beta = 1$')),
                                            'alpha = 0.95, beta = 1'=parse(text=TeX('$\\alpha = 0.95, \\beta = 1$')),
                                            'alpha = 0.95, beta = 2'=parse(text=TeX('$\\alpha = 0.95, \\beta = 2$'))))
+# FIGURE 2 #
 pdf(file = 'draft/figures/fig_nterm_chipman.pdf', width = 6, height = 3)
 ggplot(nterm.sim.df, aes(x = nterm)) + 
   geom_vline(xintercept = c(5,10,15,20), color = 'grey', alpha = 0.5) +
@@ -70,17 +72,6 @@ depth.alt.01.01 <- vapply(1:10000, \(x) get_depth(generate_random_binary_tree_fr
 depth.alt.01.1 <- vapply(1:10000, \(x) get_depth(generate_random_binary_tree_from_prior(0.1, 2)$tree), 0)
 depth.alt.1.01 <- vapply(1:10000, \(x) get_depth(generate_random_binary_tree_from_prior(1, 0.01)$tree), 0)
 
-max(depth.alt.01.01)
-max(depth.alt.01.1)
-
-depth.alt.1.1 <- sample(1:10, 10000, replace = TRUE)
-depth.alt.01.01 <- sample(1:10, 10000, replace = TRUE)
-depth.alt.01.1 <-sample(1:10, 10000, replace = TRUE)
-depth.alt.1.01 <- sample(1:10, 10000, replace = TRUE)
-
-
-
-
 
 depth.alt.toplot <- rbind(data.frame(depth = depth.alt.01.01,
                                      panel.name = 'o = 0.1, g = 0.1'),
@@ -97,6 +88,7 @@ depth.alt.toplot$panel.name <- factor(depth.alt.toplot$panel.name,
                                            'o = 1, g = 0.1'=parse(text=TeX('$\\omega = 1, \\gamma = 0.01$')),
                                            'o = 1, g = 1'=parse(text=TeX('$\\omega = 1, \\gamma = 2$'))))
 
+# FIGURE 3 #
 pdf(file = 'draft/figures/fig_depth_pmf_alt.pdf', width = 6, height = 3)
 ggplot(depth.alt.toplot, aes(x = depth)) + 
   geom_vline(xintercept = c(0,5,10,15,20,25), color = 'grey', alpha = 0.5) +
@@ -135,6 +127,7 @@ ecdf.depth.alt.toplot$panel.name <- factor(ecdf.depth.alt.toplot$panel.name,
                                                'o = 1, g = 0.1'=parse(text=TeX('$\\omega = 1, \\gamma = 0.01$')),
                                                'o = 1, g = 1'=parse(text=TeX('$\\omega = 1, \\gamma = 2$'))))
 
+# FIGURE 4 #
 pdf(file = 'draft/figures/fig_depth_ecdf_alt.pdf', width = 6, height = 3)
 ggplot(ecdf.depth.alt.toplot, aes(depth, ecdf/10000, color = panel.name, linetype = panel.name)) + 
   geom_line() + 
@@ -242,6 +235,8 @@ df.pp <- data.frame(x = c(pp.1[1], pp.2[1]),
 df.pp$panel.name <- factor(df.pp$panel.name, 
                            labels = c('loss1' = TeX('$E_L^{(1)}$'),
                                       'loss2' = TeX('$E_L^{(2)}$')))
+
+# FIGURE 5 #
 pdf(file = 'draft/figures/fig_exp_loss.pdf', width = 6, height = 3)
 ggplot(df.par, aes(x = omega, y = gamma, fill = exp.loss, z = exp.loss)) + 
   geom_tile() + 
