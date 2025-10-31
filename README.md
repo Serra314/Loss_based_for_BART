@@ -1,4 +1,4 @@
-# Loss_based_for_BART
+# Loss-based prior for CART and BART
 The repository contains the code used to produce the results and the figure illustrated in the article "Loss-based prior for CART and BART models"
 
 The code folder contains the functions for the MCMC algorithm, analyse posterior results, visualise trees for the CART model.
